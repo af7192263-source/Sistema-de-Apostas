@@ -1,5 +1,5 @@
 [README.md](https://github.com/user-attachments/files/31817743/README.md)
-# 💰 Sistema de Apostas Online
+# 💰 TN CRVG
 
 Sistema profissional de análise e gestão de apostas esportivas.
 
