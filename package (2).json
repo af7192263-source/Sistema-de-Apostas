@@ -1,0 +1,16 @@
+{
+  "name": "sistema-apostas",
+  "version": "1.0.0",
+  "description": "Sistema de Apostas Esportivas",
+  "main": "api.js",
+  "scripts": {
+    "start": "node api.js",
+    "dev": "node api.js"
+  },
+  "keywords": ["apostas", "esportes", "análise"],
+  "author": "Antonio",
+  "license": "MIT",
+  "engines": {
+    "node": "18.x"
+  }
+}
