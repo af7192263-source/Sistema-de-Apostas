@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💰 Sistema de Apostas - ONLINE AGORA!</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+        }
+
+        .header h1 {
+            font-size: 2rem;
+            margin-bottom: 5px;
+        }
+
+        .tabs {
+            display: flex;
+            background: #f5f5f5;
+            border-bottom: 2px solid #ddd;
+            padding: 0 30px;
+        }
+
+        .tab-btn {
+            padding: 15px 20px;
+            background: transparent;
+            border: none;
+            border-bottom: 3px solid transparent;
+            cursor: pointer;
+            font-weight: 600;
+            color: #666;
+            transition: all 0.3s;
+        }
+
+        .tab-btn.active {
+            color: #667eea;
+            border-bottom-color: #667eea;
+        }
+
+        .content {
+            padding: 30px;
+            min-height: 500px;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .card {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-left: 4px solid #667eea;
+        }
+
+        .card h3 {
+            margin-bottom: 10px;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #667eea;
+        }
+
+        .spinner {
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #667eea;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .success {
+            background: #c8e6c9;
+            border-left: 4px solid #4caf50;
+            padding: 20px;
+            border-radius: 8px;
+            color: #2e7d32;
+            margin-bottom: 20px;
+        }
+
+        .error {
+            background: #ffebee;
+            border-left: 4px solid #f44336;
+            padding: 20px;
+            border-radius: 8px;
+            color: #c62828;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background: #f5f5f5;
+        }
+
+        .empty {
+            text-align: center;
+            color: #999;
+            padding: 60px 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>💰 Sistema de Apostas Online</h1>
+            <p>✅ ONLINE NA VERCEL - Dados Reais!</p>
+        </div>
+
+        <div class="tabs">
+            <button class="tab-btn active" onclick="switchTab(event, 'dashboard')">📊 Dashboard</button>
+            <button class="tab-btn" onclick="switchTab(event, 'partidas')">⚽ Partidas</button>
+            <button class="tab-btn" onclick="switchTab(event, 'alertas')">🚨 Alertas</button>
+        </div>
+
+        <div class="content">
+            <div id="dashboard" class="tab-content active">
+                <button class="btn" onclick="buscarPartidas()">🔄 Buscar Partidas Reais</button>
+                
+                <div class="success">
+                    ✅ Sistema ONLINE na Vercel!<br>
+                    Conectado com Football-Data.org<br>
+                    Dados 100% reais!
+                </div>
+
+                <div class="card">
+                    <h3>🎯 Como usar:</h3>
+                    <p>
+                        1. Clique em "🔄 Buscar Partidas Reais"<br>
+                        2. Vá para ⚽ Partidas<br>
+                        3. Clique 🚨 Alertas<br>
+                        Tudo com dados REAIS!
+                    </p>
+                </div>
+            </div>
+
+            <div id="partidas" class="tab-content">
+                <button class="btn" onclick="buscarPartidas()">🔄 Atualizar</button>
+                <div id="partidas-lista">
+                    <div class="empty">⚽ Clique em "🔄 Buscar Partidas Reais"</div>
+                </div>
+            </div>
+
+            <div id="alertas" class="tab-content">
+                <button class="btn" onclick="buscarAlertas()">🚨 Buscar</button>
+                <div id="alertas-lista">
+                    <div class="empty">🚨 Clique em "🚨 Buscar"</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function switchTab(event, name) {
+            document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            document.getElementById(name).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        async function buscarPartidas() {
+            const lista = document.getElementById('partidas-lista');
+            lista.innerHTML = '<div class="loading"><div class="spinner"></div>Buscando partidas...</div>';
+
+            try {
+                const response = await fetch('/api/partidas');
+                const data = await response.json();
+
+                if (data.error) throw new Error(data.error);
+
+                let html = '';
+                data.forEach(p => {
+                    html += `
+                        <div class="card">
+                            <h3>${p.home} x ${p.away}</h3>
+                            <p><strong>${p.league}</strong> • ${p.date}</p>
+                            <table>
+                                <tr>
+                                    <td><strong>Home</strong></td>
+                                    <td><strong>${p.prob_home}%</strong></td>
+                                    <td>Odd: ${p.odds_home}</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Draw</strong></td>
+                                    <td><strong>${p.prob_draw}%</strong></td>
+                                    <td>Odd: ${p.odds_draw}</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Away</strong></td>
+                                    <td><strong>${p.prob_away}%</strong></td>
+                                    <td>Odd: ${p.odds_away}</td>
+                                </tr>
+                            </table>
+                        </div>
+                    `;
+                });
+
+                lista.innerHTML = html;
+
+            } catch (error) {
+                lista.innerHTML = `<div class="error">❌ Erro: ${error.message}</div>`;
+            }
+        }
+
+        async function buscarAlertas() {
+            const lista = document.getElementById('alertas-lista');
+            lista.innerHTML = '<div class="loading"><div class="spinner"></div>Buscando alertas...</div>';
+
+            try {
+                const response = await fetch('/api/alertas');
+                const data = await response.json();
+
+                if (data.error) throw new Error(data.error);
+
+                let html = '';
+                data.forEach((a, i) => {
+                    html += `
+                        <div class="card">
+                            <h3>#${i+1} - ${a.partida}</h3>
+                            <p>
+                                Mercado: <strong>${a.mercado}</strong><br>
+                                Probabilidade: <strong>${a.prob}%</strong><br>
+                                Odd: <strong>${a.odd}</strong><br>
+                                Edge: <strong style="color: #4caf50;">+${a.edge}%</strong>
+                            </p>
+                        </div>
+                    `;
+                });
+
+                lista.innerHTML = html;
+
+            } catch (error) {
+                lista.innerHTML = `<div class="error">❌ Erro: ${error.message}</div>`;
+            }
+        }
+    </script>
+</body>
+</html>
